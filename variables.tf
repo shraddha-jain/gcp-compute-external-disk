@@ -4,8 +4,8 @@ variable "project_id" {
 variable "region" {
   description = "The region"
 }
-variable "instance_name" {
-  description = "The name of the instance"
+variable "prefix" {
+  description = "The prefix for the resource names"
 }
 variable "machine_type" {
   description = "The type of the machine"

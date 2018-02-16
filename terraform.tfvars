@@ -4,7 +4,7 @@ subnet_project = "*****"
 subnetwork     = "*****"
 
 region         = "us-east1"
-instance_name  = "sj-demo-inst"
+prefix         = "sj-demo"
 machine_type   = "custom-2-3840"
 zone           = "us-east1-b"
 disk_image     = "ubuntu-1604-xenial-v20171011"

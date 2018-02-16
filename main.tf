@@ -4,7 +4,7 @@ provider "google" {
 }
 
 resource "google_compute_instance" "gcp_instance" {
-  name         = "${var.instance_name}"
+  name         = "${var.prefix}-inst"
   machine_type = "${var.machine_type}"
   zone         = "${var.zone}"
 
@@ -15,6 +15,10 @@ resource "google_compute_instance" "gcp_instance" {
       type = "${var.disk_type}"
     }
   }
+  
+  attached_disk {
+    source = "${google_compute_disk.gcp_compute_disk.self_link}"
+  }  
 
   network_interface {
     network = "default"
@@ -39,5 +43,15 @@ resource "google_compute_instance" "gcp_instance" {
 
   service_account {
     scopes = ["cloud-platform"]
+  }
+}
+
+resource "google_compute_disk" "gcp_compute_disk" {
+  name  = "${var.prefix}-disk"
+  type  = "${var.disk_type}"
+  zone  = "${var.zone}"
+  image = "${var.disk_image}"
+  labels {
+    environment = "dev"
   }
 }
